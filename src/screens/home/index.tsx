@@ -7,6 +7,7 @@ function HomeScreen() {
   return (
     <ScrollView
       stickyHeaderIndices={[0]}
+      showsVerticalScrollIndicator={false}
       style={{ backgroundColor: "#f5f5f5" }}
     >
       <HeaderMain />
