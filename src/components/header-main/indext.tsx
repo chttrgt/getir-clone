@@ -23,7 +23,7 @@ function HeaderMain() {
       </View>
       <View style={styles.headerNavRight}>
         <View>
-          <Text style={{ color: "#5d3ebd", fontSize: 9, fontWeight: 400 }}>
+          <Text style={{ color: "#5d3ebd", fontSize: 9, fontWeight: 600 }}>
             TVS
           </Text>
         </View>

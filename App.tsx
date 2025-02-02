@@ -1,18 +1,6 @@
-import { StyleSheet, View } from "react-native";
-import HomeScreen from "./src/screens/home";
+import "react-native-gesture-handler";
+import RootNavigator from "./src/navigators/RootNavigator";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
-  );
+  return <RootNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    marginTop: 50,
-  },
-});
