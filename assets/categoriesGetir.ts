@@ -68,6 +68,14 @@ export default [
     id: "6",
     name: "Atıştırmalık",
     src: "https://cdn.getir.com/cat/56dfe03cf82055030022cdc0_1619242841966_1619242842053.jpeg",
+    subCategories: [
+      "Birlikte İyi Gider",
+      "Çubuk",
+      "Kutu",
+      "Külah",
+      "Çoklu",
+      "Bar",
+    ],
   },
   {
     id: "7",
