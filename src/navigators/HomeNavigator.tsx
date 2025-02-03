@@ -1,10 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { Dimensions, Image, View, Platform, Text } from "react-native";
 import HomeScreen from "../screens/home";
-import { Dimensions, Image, View, Platform } from "react-native";
+import CategorDetailsScreen from "../screens/category-details";
+import { RootStackParamList } from "../Types";
 
 const { width, height } = Dimensions.get("window");
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function HomeNavigator() {
   return (
@@ -13,7 +15,7 @@ export default function HomeNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerStyle: { backgroundColor: "#5C3EBC" },
+          headerStyle: { backgroundColor: "#5d3ebd" },
           headerTitle: () => (
             <View
               style={{
@@ -31,6 +33,20 @@ export default function HomeNavigator() {
                 style={{ width: 70, height: 30 }}
               />
             </View>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CategoryDetails"
+        component={CategorDetailsScreen}
+        options={{
+          headerStyle: { backgroundColor: "#5d3ebd" },
+          headerBackTitle: "",
+          headerTintColor: "white",
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
+              Ürünler
+            </Text>
           ),
         }}
       />

@@ -18,10 +18,10 @@ export default function BottomNavigator() {
         style={{
           width: 60,
           height: 60,
-          backgroundColor: "#5C3EBC",
+          backgroundColor: "#5d3ebd",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius:100,
+          borderRadius: 100,
           borderWidth: 4,
           borderColor: "#F5F5F5",
           marginTop: -15,
@@ -40,7 +40,7 @@ export default function BottomNavigator() {
       screenOptions={{
         tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#5C3EBC",
+        tabBarActiveTintColor: "#5d3ebd",
         tabBarInactiveTintColor: "#959595",
         headerShown: false,
         tabBarStyle: {
