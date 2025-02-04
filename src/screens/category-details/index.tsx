@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import CategoryFiltering from "../../components/category-filtering";
 import { ICategory } from "../../models/ICategory";
 import TypeFiltering from "../../components/type-filtering";
+import Products from "../../components/products";
 
 interface CategoryDetailsScreenProps {
   route: {
@@ -12,7 +13,7 @@ interface CategoryDetailsScreenProps {
   };
 }
 
-export default function CategorDetailsScreen(
+export default function CategoryDetailsScreen(
   props: CategoryDetailsScreenProps
 ) {
   const [selectedCategory, setSelectedCategory] = useState<ICategory>(
@@ -22,6 +23,7 @@ export default function CategorDetailsScreen(
     <ScrollView>
       <CategoryFiltering selectedCat={selectedCategory} />
       <TypeFiltering />
+      <Products />
     </ScrollView>
   );
 }

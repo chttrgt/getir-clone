@@ -1,14 +1,23 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Dimensions, Image, View, Platform, Text } from "react-native";
+import {
+  Dimensions,
+  Image,
+  View,
+  Platform,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import HomeScreen from "../screens/home";
 import CategorDetailsScreen from "../screens/category-details";
 import { RootStackParamList } from "../Types";
+import ProductDetailsScreen from "../screens/product-details";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { width, height } = Dimensions.get("window");
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function HomeNavigator() {
+const HomeNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -50,6 +59,38 @@ export default function HomeNavigator() {
           ),
         }}
       />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetailsScreen}
+        options={({ navigation }) => ({
+          headerStyle: { backgroundColor: "#5d3ebd" },
+          headerBackTitle: "",
+          headerTintColor: "white",
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
+              Ürün Detayı
+            </Text>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            >
+              <Ionicons name="close" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ marginRight: 10 }}>
+              <Ionicons name="heart" size={24} color="#32177a" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
     </Stack.Navigator>
   );
-}
+};
+
+export default HomeNavigator;

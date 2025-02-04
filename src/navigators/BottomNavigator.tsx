@@ -4,6 +4,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import HomeNavigator from "./HomeNavigator";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -54,11 +55,18 @@ export default function BottomNavigator() {
       <BottomTab.Screen
         name="home"
         component={HomeNavigator}
-        options={{
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Entypo name="home" size={24} color={color} />
           ),
-        }}
+          tabBarStyle: ((route) => {
+            const routeName = getFocusedRouteNameFromRoute(route);
+            if (routeName === "ProductDetails") {
+              return { display: "none" };
+            }
+            return undefined;
+          })(route),
+        })}
       />
 
       <BottomTab.Screen

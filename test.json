@@ -1,0 +1,31 @@
+{
+  "navigation": {
+    "addListener": ["Function addListener"],
+    "canGoBack": ["Function canGoBack"],
+    "dispatch": ["Function dispatch"],
+    "getId": ["Function getId"],
+    "getParent": ["Function getParent"],
+    "getState": ["Function getState"],
+    "goBack": ["Function anonymous"],
+    "isFocused": ["Function isFocused"],
+    "jumpTo": ["Function anonymous"],
+    "navigate": ["Function anonymous"],
+    "navigateDeprecated": ["Function anonymous"],
+    "pop": ["Function anonymous"],
+    "popTo": ["Function anonymous"],
+    "popToTop": ["Function anonymous"],
+    "preload": ["Function anonymous"],
+    "push": ["Function anonymous"],
+    "removeListener": ["Function removeListener"],
+    "replace": ["Function anonymous"],
+    "reset": ["Function anonymous"],
+    "setOptions": ["Function setOptions"],
+    "setParams": ["Function anonymous"]
+  },
+  "route": {
+    "key": "ProductDetails-I2VFPczZVc10CR2ioDdI-",
+    "name": "ProductDetails",
+    "params": { "proItem": ["Object"] },
+    "path": "undefined"
+  }
+}
