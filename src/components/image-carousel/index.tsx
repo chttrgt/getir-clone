@@ -53,17 +53,19 @@ export default function ImageCarousel({ images }: { images: string[] }) {
         onViewableItemsChanged={onViewRef.current}
       ></FlatList>
       <View style={{ flexDirection: "row", alignItems: "center", gap: 7 }}>
-        {images.map((_, index) => (
-          <View
-            key={index}
-            style={{
-              width: 10,
-              height: 10,
-              borderRadius: 50,
-              backgroundColor: activeIndex === index ? "#5d3ebd" : "#c9c9c9",
-            }}
-          ></View>
-        ))}
+        {images.length > 1 &&
+          images.map((_, index) => (
+            <View
+              key={index}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 50,
+                backgroundColor: activeIndex === index ? "#5d3ebd" : "#c9c9c9",
+                marginBottom: 25,
+              }}
+            ></View>
+          ))}
       </View>
     </View>
   );

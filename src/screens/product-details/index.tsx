@@ -1,8 +1,15 @@
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import ImageCarousel from "../../components/image-carousel";
 import { IProducts } from "../../models/IProducts";
 import ProductDetailsProvider, {
+  ProductCartButton,
   ProductDetailsInfo,
 } from "../../components/product-detail-provider";
 
@@ -22,11 +29,14 @@ export default function ProductDetailsScreen(prop: any) {
   }
 
   return (
-    <View>
-      <ImageCarousel images={product.images} />
-      <ProductDetailsProvider proDetail={product} />
-      <Text style={styles.titleText}>Detaylar</Text>
-      <ProductDetailsInfo />
+    <View style={{ position: "relative", flex: 1 }}>
+      <ScrollView>
+        <ImageCarousel images={product.images} />
+        <ProductDetailsProvider proDetail={product} />
+        <Text style={styles.titleText}>Detaylar</Text>
+        <ProductDetailsInfo />
+      </ScrollView>
+      <ProductCartButton />
     </View>
   );
 }
@@ -39,8 +49,8 @@ const styles = StyleSheet.create({
   },
 
   titleText: {
-    paddingHorizontal: 4,
-    paddingVertical: 14,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
     color: "#808b99",
     fontWeight: "600",
   },
