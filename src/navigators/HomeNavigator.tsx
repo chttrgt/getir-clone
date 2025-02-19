@@ -1,4 +1,7 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from "@react-navigation/stack";
 import {
   Dimensions,
   Image,
@@ -12,6 +15,8 @@ import CategorDetailsScreen from "../screens/category-details";
 import { RootStackParamList } from "../Types";
 import ProductDetailsScreen from "../screens/product-details";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import CartScreen from "../screens/cart";
 
 const { width, height } = Dimensions.get("window");
 
@@ -45,10 +50,11 @@ const HomeNavigator = () => {
           ),
         }}
       />
+
       <Stack.Screen
         name="CategoryDetails"
         component={CategorDetailsScreen}
-        options={{
+        options={({ navigation }) => ({
           headerStyle: { backgroundColor: "#5d3ebd" },
           headerBackTitle: "",
           headerTintColor: "white",
@@ -57,8 +63,48 @@ const HomeNavigator = () => {
               Ürünler
             </Text>
           ),
-        }}
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("CartScreen")}
+              style={{
+                width: width * 0.3,
+                height: 33,
+                backgroundColor: "white",
+                marginRight: width * 0.03,
+                borderRadius: 7,
+                flexDirection: "row",
+                alignItems: "center",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                source={require("../../assets/cart.png")}
+                style={{ width: 27, height: 27, marginLeft: 5 }}
+              />
+              <View
+                style={{
+                  backgroundColor: "#F3EFFE",
+                  height: 33,
+                  flex: 1,
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    color: "#5d3ebd",
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    marginLeft: 15,
+                  }}
+                >
+                  ₺24,00
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ),
+        })}
       />
+
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
@@ -85,6 +131,37 @@ const HomeNavigator = () => {
           headerRight: () => (
             <TouchableOpacity style={{ marginRight: 10 }}>
               <Ionicons name="heart" size={24} color="#32177a" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={({ navigation }) => ({
+          headerStyle: { backgroundColor: "#5d3ebd" },
+          headerBackTitle: "",
+          headerTintColor: "white",
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
+              Sepetim
+            </Text>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{
+                marginLeft: 10,
+                marginRight: 7,
+              }}
+            >
+              <Ionicons name="close" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ marginRight: 10 }}>
+              <FontAwesome name="trash" size={22} color="white" />
             </TouchableOpacity>
           ),
         })}

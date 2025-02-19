@@ -61,7 +61,7 @@ export default function BottomNavigator() {
           ),
           tabBarStyle: ((route) => {
             const routeName = getFocusedRouteNameFromRoute(route);
-            if (routeName === "ProductDetails") {
+            if (routeName === "ProductDetails" || routeName === "CartScreen") {
               return { display: "none" };
             }
             return undefined;

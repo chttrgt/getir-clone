@@ -5,4 +5,5 @@ export type RootStackParamList = {
   Home: undefined;
   CategoryDetails: { catItem: ICategory };
   ProductDetails: { proItem: IProducts };
+  CartScreen: undefined;
 };
