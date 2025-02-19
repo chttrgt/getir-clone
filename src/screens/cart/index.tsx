@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/cart-item";
+import { ScrollView } from "react-native-gesture-handler";
+import ProductItem from "../../components/prorduct-item";
 
 const { width, height } = Dimensions.get("window");
 
@@ -37,10 +39,31 @@ export default function CartScreen() {
           />
         )}
       />
+      <Text
+        style={{
+          fontSize: 18,
+          fontWeight: "bold",
+          padding: 15,
+          color: "#5d3ebd",
+        }}
+      >
+        Önerilen Ürünler
+      </Text>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        bounces={true}
+        style={{ backgroundColor: "#fff" }}
+      >
+        {productsGetir.slice(0, 7).map((item) => (
+          <ProductItem key={item.id} pro={item} />
+        ))}
+      </ScrollView>
+      {/* Devam ve Toplam kısmı */}
       <View
         style={{
           height: height * 0.12,
-          backgroundColor: "#f3f3f3",
+          backgroundColor: "#fff",
           paddingHorizontal: "3%",
           flexDirection: "row",
           alignItems: "center",
@@ -48,7 +71,7 @@ export default function CartScreen() {
       >
         <TouchableOpacity
           style={{
-            height: height * 0.08,
+            height: height * 0.07,
             backgroundColor: "#5d3ebd",
             flex: 2,
             justifyContent: "center",
@@ -65,9 +88,11 @@ export default function CartScreen() {
           style={{
             flex: 1,
             backgroundColor: "white",
-            height: height * 0.08,
+            height: height * 0.07,
             justifyContent: "center",
             alignItems: "center",
+            borderWidth: 0.7,
+            borderColor: "#dedede",
             borderTopRightRadius: 8,
             borderBottomRightRadius: 8,
           }}
