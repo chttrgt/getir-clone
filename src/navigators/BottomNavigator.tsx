@@ -55,18 +55,23 @@ export default function BottomNavigator() {
       <BottomTab.Screen
         name="home"
         component={HomeNavigator}
-        options={({ route }) => ({
-          tabBarIcon: ({ color }) => (
-            <Entypo name="home" size={24} color={color} />
-          ),
-          tabBarStyle: ((route) => {
-            const routeName = getFocusedRouteNameFromRoute(route);
-            if (routeName === "ProductDetails" || routeName === "CartScreen") {
-              return { display: "none" };
-            }
-            return undefined;
-          })(route),
-        })}
+        options={({ route }) => {
+          const routeName = getFocusedRouteNameFromRoute(route);
+          return {
+            tabBarIcon: ({ color }) => (
+              <Entypo name="home" size={24} color={color} />
+            ),
+            tabBarStyle:
+              routeName === "ProductDetails" || routeName === "CartScreen"
+                ? { display: "none" }
+                : {
+                    height: 80,
+                    borderTopColor: "#9595954b",
+                    borderTopWidth: 1,
+                    boxShadow: "0px -1px 2px rgba(0, 0, 0, 0.15)",
+                  },
+          };
+        }}
       />
 
       <BottomTab.Screen
