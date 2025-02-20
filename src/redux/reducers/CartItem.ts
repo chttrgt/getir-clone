@@ -7,7 +7,11 @@ import {
   DECREASE_QUANTITY,
 } from "../constants";
 
-const CartItemsReducer = (state: IProducts[] = [], action: any) => {
+interface CartItem extends IProducts {
+  quantity: number;
+}
+
+const CartItemsReducer = (state: CartItem[] = [], action: any) => {
   switch (action.type) {
     case ADD_TO_CART:
       const existingItem = state.find((item) => item.id === action.payload.id);
@@ -16,7 +20,7 @@ const CartItemsReducer = (state: IProducts[] = [], action: any) => {
           item.id === action.payload.id
             ? {
                 ...item,
-                quantity: (item.quantity || 0) + 1,
+                quantity: item.quantity + 1,
               }
             : item
         );
@@ -24,12 +28,12 @@ const CartItemsReducer = (state: IProducts[] = [], action: any) => {
       return [...state, { ...action.payload, quantity: 1 }];
 
     case REMOVE_FROM_CART:
-      const currentCartItem = state.find(
-        (item) => item.id === action.payload.id
-      );
-      if (currentCartItem?.quantity === 0) {
-        return state.filter((item) => item.id !== action.payload.id);
-      }
+      return state.filter((item) => {
+        if (item.id === action.payload.id) {
+          return item.quantity > 0;
+        }
+        return true;
+      });
     case CLEAR_CART:
       return [];
 
@@ -38,20 +42,22 @@ const CartItemsReducer = (state: IProducts[] = [], action: any) => {
         item.id === action.payload.id
           ? {
               ...item,
-              quantity: (item.quantity || 0) + 1,
+              quantity: item.quantity + 1,
             }
           : item
       );
 
     case DECREASE_QUANTITY:
-      return state.map((item) =>
-        item.id === action.payload.id
-          ? {
-              ...item,
-              quantity: Math.max((item.quantity || 0) - 1, 0),
-            }
-          : item
-      );
+      return state
+        .map((item) =>
+          item.id === action.payload.id
+            ? {
+                ...item,
+                quantity: Math.max(item.quantity - 1, 0),
+              }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
 
     default:
       return state;
