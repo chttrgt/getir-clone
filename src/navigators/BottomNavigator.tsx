@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -27,7 +27,7 @@ export default function BottomNavigator() {
           borderColor: "#F5F5F5",
           marginTop: -15,
           alignSelf: "center",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+          elevation: 1,
         }}
       >
         <Entypo name="list" size={36} color="#FFD00C" />
@@ -48,7 +48,7 @@ export default function BottomNavigator() {
           height: 80,
           borderTopColor: "#9595954b",
           borderTopWidth: 1,
-          boxShadow: "0px -1px 2px rgba(0, 0, 0, 0.15)",
+          elevation: 1,
         },
       }}
     >
