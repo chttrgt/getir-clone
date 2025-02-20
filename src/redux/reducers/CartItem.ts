@@ -4,7 +4,6 @@ import {
   REMOVE_FROM_CART,
   CLEAR_CART,
   INCREASE_QUANTITY,
-  DECREASE_QUANTITY,
 } from "../constants";
 
 interface CartItem extends IProducts {
@@ -25,17 +24,20 @@ const CartItemsReducer = (state: CartItem[] = [], action: any) => {
             : item
         );
       }
+
       return [...state, { ...action.payload, quantity: 1 }];
 
     case REMOVE_FROM_CART:
-      return state.filter((item) => {
-        if (item.id === action.payload.id) {
-          return item.quantity > 0;
-        }
-        return true;
-      });
-    case CLEAR_CART:
-      return [];
+      return state
+        .map((item) =>
+          item.id === action.payload.id
+            ? {
+                ...item,
+                quantity: Math.max(item.quantity - 1, 0),
+              }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
 
     case INCREASE_QUANTITY:
       return state.map((item) =>
@@ -47,17 +49,8 @@ const CartItemsReducer = (state: CartItem[] = [], action: any) => {
           : item
       );
 
-    case DECREASE_QUANTITY:
-      return state
-        .map((item) =>
-          item.id === action.payload.id
-            ? {
-                ...item,
-                quantity: Math.max(item.quantity - 1, 0),
-              }
-            : item
-        )
-        .filter((item) => item.quantity > 0);
+    case CLEAR_CART:
+      return [];
 
     default:
       return state;

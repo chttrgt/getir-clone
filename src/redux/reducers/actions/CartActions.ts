@@ -1,4 +1,9 @@
+import { IProducts } from "../../../models/IProducts";
 import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from "../../constants";
+
+interface CartItem extends IProducts {
+  quantity: number;
+}
 
 export const addToCart = (item: any) => {
   return {
@@ -23,13 +28,6 @@ export const clearCart = () => {
 export const increaseQuantity = (item: any) => {
   return {
     type: "INCREASE_QUANTITY",
-    payload: item,
-  };
-};
-
-export const decreaseQuantity = (item: any) => {
-  return {
-    type: "DECREASE_QUANTITY",
     payload: item,
   };
 };

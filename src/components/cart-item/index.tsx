@@ -11,7 +11,6 @@ import { IProducts } from "../../models/IProducts";
 import { useDispatch } from "react-redux";
 const { width, height } = Dimensions.get("window");
 import {
-  decreaseQuantity,
   increaseQuantity,
   removeFromCart,
 } from "../../redux/reducers/actions/CartActions";
@@ -24,10 +23,7 @@ export default function CartItem({ item }: { item: IProducts }) {
   };
 
   const handleDecrease = () => {
-    if (item.quantity === 1) {
-      dispatch(removeFromCart(item));
-    }
-    dispatch(decreaseQuantity(item));
+    dispatch(removeFromCart(item));
   };
 
   return (
