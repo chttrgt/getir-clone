@@ -6,4 +6,5 @@ export interface IProducts {
   amount: string;
   oldPrice: number;
   newPrice: number;
+  quantity?: number;
 }

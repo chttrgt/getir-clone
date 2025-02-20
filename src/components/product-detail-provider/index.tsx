@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { IProducts } from "../../models/IProducts";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useDispatch } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
@@ -57,7 +58,13 @@ export const ProductDetailsInfo = () => {
   );
 };
 
-export const ProductCartButton = () => {
+export const ProductCartButton = ({ proDetail }: { proDetail: IProducts }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch({ type: "ADD_TO_CART", payload: proDetail });
+  };
+
   return (
     <TouchableOpacity
       style={{
@@ -72,6 +79,7 @@ export const ProductCartButton = () => {
         position: "absolute",
         bottom: 10,
       }}
+      onPress={handleAddToCart}
     >
       <View
         style={{

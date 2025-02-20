@@ -36,7 +36,7 @@ export default function ProductDetailsScreen(prop: any) {
         <Text style={styles.titleText}>Detaylar</Text>
         <ProductDetailsInfo />
       </ScrollView>
-      <ProductCartButton />
+      <ProductCartButton proDetail={product} />
     </View>
   );
 }

@@ -1,9 +1,35 @@
-import { Dimensions, Image, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import { IProducts } from "../../models/IProducts";
+import { useDispatch } from "react-redux";
 const { width, height } = Dimensions.get("window");
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../../redux/reducers/actions/CartActions";
 
 export default function CartItem({ item }: { item: IProducts }) {
+  const dispatch = useDispatch();
+
+  const handleIncrease = () => {
+    dispatch(increaseQuantity(item));
+  };
+
+  const handleDecrease = () => {
+    if (item.quantity === 1) {
+      dispatch(removeFromCart(item));
+    }
+    dispatch(decreaseQuantity(item));
+  };
+
   return (
     <View
       style={{
@@ -68,9 +94,12 @@ export default function CartItem({ item }: { item: IProducts }) {
           boxShadow: "0 0 3px rgba(0,0,0,0.1)",
         }}
       >
-        <View style={{ flex: 1, alignItems: "center" }}>
+        <TouchableOpacity
+          style={{ flex: 1, alignItems: "center" }}
+          onPress={handleDecrease}
+        >
           <Entypo name="minus" size={15} color="#5D3EBD" />
-        </View>
+        </TouchableOpacity>
         <View
           style={{
             flex: 1,
@@ -87,12 +116,15 @@ export default function CartItem({ item }: { item: IProducts }) {
               color: "white",
             }}
           >
-            1
+            {item.quantity}
           </Text>
         </View>
-        <View style={{ flex: 1, alignItems: "center" }}>
+        <TouchableOpacity
+          style={{ flex: 1, alignItems: "center" }}
+          onPress={handleIncrease}
+        >
           <Entypo name="plus" size={15} color="#5D3EBD" />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

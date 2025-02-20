@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 const { width, height } = Dimensions.get("window");
 
 const CartScreen = () => {
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state: any) => state.cart);
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -43,40 +43,41 @@ const CartScreen = () => {
         ListEmptyComponent={() => (
           <View
             style={{
-              flex: 1,
+              height: height * 0.4,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 50,
             }}
           >
             <Text
-              style={{ fontSize: 20, fontWeight: "bold", color: "#5d3ebd" }}
+              style={{ fontSize: 20, fontWeight: "500", color: "#5e3ebd8d" }}
             >
               Sepetinizde ürün bulunmamaktadır.
             </Text>
           </View>
         )}
       />
-      <Text
-        style={{
-          fontSize: 18,
-          fontWeight: "bold",
-          padding: 15,
-          color: "#5d3ebd",
-        }}
-      >
-        Önerilen Ürünler
-      </Text>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        bounces={true}
-        style={{ backgroundColor: "#fff" }}
-      >
-        {productsGetir.slice(0, 7).map((item) => (
-          <ProductItem key={item.id} pro={item} />
-        ))}
-      </ScrollView>
+      <View>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: "bold",
+            padding: 15,
+            color: "#5d3ebd",
+          }}
+        >
+          Önerilen Ürünler
+        </Text>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          bounces={true}
+          style={{ backgroundColor: "#fff" }}
+        >
+          {productsGetir.slice(0, 7).map((item) => (
+            <ProductItem key={item.id} pro={item} />
+          ))}
+        </ScrollView>
+      </View>
       {/* Devam ve Toplam kısmı */}
       <View
         style={{
@@ -122,7 +123,13 @@ const CartScreen = () => {
               fontWeight: "bold",
             }}
           >
-            ₺24,00
+            ₺
+            {cartItems
+              .reduce(
+                (acc: any, item: any) => acc + item.newPrice * item?.quantity,
+                0
+              )
+              .toFixed(2)}
           </Text>
         </View>
       </View>

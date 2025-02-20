@@ -24,7 +24,7 @@ const { width, height } = Dimensions.get("window");
 const Stack = createStackNavigator<RootStackParamList>();
 
 const HomeNavigator = () => {
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
 
   return (
@@ -104,7 +104,11 @@ const HomeNavigator = () => {
                   ₺
                   {cartItems &&
                     cartItems
-                      .reduce((acc, item) => acc + item.newPrice, 0)
+                      .reduce(
+                        (acc: any, item: any) =>
+                          acc + item.newPrice * item?.quantity,
+                        0
+                      )
                       .toFixed(2)}
                 </Text>
               </View>
