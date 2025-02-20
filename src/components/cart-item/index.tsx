@@ -18,7 +18,13 @@ export default function CartItem({ item }: { item: IProducts }) {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Image
           source={{ uri: item.image }}
-          style={{ height: height * 0.1, width: height * 0.1 }}
+          style={{
+            height: height * 0.1,
+            width: height * 0.1,
+            borderWidth: 0.4,
+            borderRadius: 10,
+            borderColor: "lightgray",
+          }}
         />
         <View style={{ marginLeft: 10 }}>
           <Text

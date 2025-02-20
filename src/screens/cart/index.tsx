@@ -10,14 +10,16 @@ import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/cart-item";
 import { ScrollView } from "react-native-gesture-handler";
 import ProductItem from "../../components/prorduct-item";
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
-export default function CartScreen() {
+const CartScreen = () => {
+  const cartItems = useSelector((state) => state.cart);
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        data={productsGetir.slice(0, 3)}
+        data={cartItems}
         renderItem={({ item }) => <CartItem item={item} />}
         keyExtractor={(item) => item.id.toString()}
         ItemSeparatorComponent={() => (
@@ -37,6 +39,22 @@ export default function CartScreen() {
               elevation: 5,
             }}
           />
+        )}
+        ListEmptyComponent={() => (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 50,
+            }}
+          >
+            <Text
+              style={{ fontSize: 20, fontWeight: "bold", color: "#5d3ebd" }}
+            >
+              Sepetinizde ürün bulunmamaktadır.
+            </Text>
+          </View>
         )}
       />
       <Text
@@ -110,4 +128,6 @@ export default function CartScreen() {
       </View>
     </View>
   );
-}
+};
+
+export default CartScreen;

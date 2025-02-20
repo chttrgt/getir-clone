@@ -17,12 +17,16 @@ import ProductDetailsScreen from "../screens/product-details";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import CartScreen from "../screens/cart";
+import { useDispatch, useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const HomeNavigator = () => {
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -97,7 +101,11 @@ const HomeNavigator = () => {
                     marginLeft: 15,
                   }}
                 >
-                  ₺24,00
+                  ₺
+                  {cartItems &&
+                    cartItems
+                      .reduce((acc, item) => acc + item.newPrice, 0)
+                      .toFixed(2)}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -160,7 +168,10 @@ const HomeNavigator = () => {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity style={{ marginRight: 10 }}>
+            <TouchableOpacity
+              style={{ marginRight: 10 }}
+              onPress={() => dispatch({ type: "CLEAR_CART" })}
+            >
               <FontAwesome name="trash" size={22} color="white" />
             </TouchableOpacity>
           ),

@@ -57,6 +57,7 @@ export default function BottomNavigator() {
         component={HomeNavigator}
         options={({ route }) => {
           const routeName = getFocusedRouteNameFromRoute(route);
+          console.log(routeName);
           return {
             tabBarIcon: ({ color }) => (
               <Entypo name="home" size={24} color={color} />

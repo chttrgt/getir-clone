@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../Types";
 import { IProducts } from "../../models/IProducts";
+import { useDispatch } from "react-redux";
 
 type ProductNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -13,7 +14,13 @@ type ProductNavigationProp = StackNavigationProp<
 >;
 
 export default function ProductItem({ pro }: { pro: IProducts }) {
+  const dispatch = useDispatch();
   const navigation = useNavigation<ProductNavigationProp>();
+
+  const handlePlusButtonPress = () => {
+    dispatch({ type: "ADD_TO_CART", payload: pro });
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -32,7 +39,9 @@ export default function ProductItem({ pro }: { pro: IProducts }) {
       <Text style={styles.title}>{pro?.name}</Text>
       <Text style={styles.amount}>{pro?.amount}</Text>
       <View style={styles.plusButton}>
-        <Entypo name="plus" size={22} color="#7849F7" />
+        <TouchableOpacity onPress={handlePlusButtonPress}>
+          <Entypo name="plus" size={22} color="#7849F7" />
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
